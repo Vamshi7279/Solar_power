@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Power Prediction</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { background: linear-gradient(135deg, #ff9a9e, #fad0c4); font-family: Arial, sans-serif; }
+        .container { max-width: 500px; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); margin-top: 50px; }
+        h2 { text-align: center; color: #444; }
+        .btn-custom { background-color: #ff7eb3; color: white; font-size: 18px; border-radius: 8px; padding: 10px; width: 100%; transition: 0.3s; }
+        .btn-custom:hover { background-color: #ff5a92; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Solar Power Prediction</h2>
+        <form action="/predict" method="post">
+            <div class="mb-3"><label class="form-label">Solar Noon Distance:</label><input type="text" class="form-control" name="solar_noon_dist" required></div>
+            <div class="mb-3"><label class="form-label">Temperature:</label><input type="text" class="form-control" name="temperature" required></div>
+            <div class="mb-3"><label class="form-label">Wind Direction:</label><input type="text" class="form-control" name="wind_dir" required></div>
+            <div class="mb-3"><label class="form-label">Sky Cover:</label><input type="text" class="form-control" name="sky_cover" required></div>
+            <div class="mb-3"><label class="form-label">Visibility:</label><input type="text" class="form-control" name="visibility" required></div>
+            <div class="mb-3"><label class="form-label">Humidity:</label><input type="text" class="form-control" name="humidity" required></div>
+            <div class="mb-3"><label class="form-label">Average Wind Speed:</label><input type="text" class="form-control" name="avg_wind_speed" required></div>
+            <button type="submit" class="btn btn-custom">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
