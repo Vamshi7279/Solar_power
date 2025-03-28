@@ -9,7 +9,6 @@ try:
     with open("gradient_boosting_model.pkl", "rb") as file:
         model = pickle.load(file)
 
-    # Ensure model has predict method
     if not hasattr(model, "predict"):
         raise TypeError("Loaded object is not a valid model. Check the pickled file.")
 
@@ -30,20 +29,16 @@ def predict():
         if model is None:
             return "Error: Model not loaded properly."
 
-        # Extract only the required features
+        # Extract input values
         data = [float(request.form[feature]) for feature in FEATURES]
 
-        # Log received data
-        print("Received data:", request.form)
-        print("Processed data:", data)
+        # Make prediction
+        prediction = model.predict(np.array(data).reshape(1, -1))[0]
 
-        # Reshape and predict
-        prediction = model.predict(np.array(data).reshape(1, -1))
-
-        return f"Predicted Power Generation: {prediction[0]:.2f} kW"
+        return render_template("result.html", prediction=f"{prediction:.2f}")
 
     except Exception as e:
-        return f"Error: {str(e)}"
+        return render_template("result.html", prediction=f"Error: {str(e)}")
 
 if __name__ == '__main__':
     app.run(debug=True)
